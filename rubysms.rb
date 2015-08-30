@@ -1,9 +1,20 @@
 require 'rubygems'
 require 'twilio-ruby'
+require 'yaml'
 
-ACCOUNT_SID = "TWILIOSID"
-AUTH_TOKEN = "TWILIOTOKEN"
-FROM = "+YOUR_NUMBER"
+# Load Configuration File
+config = begin
+	YAML.load(File.open("config.yml"))
+rescue ArgumentError => e
+  puts "Could not load configuration file: #{e.message}"
+  abort
+end
+
+ACCOUNT_SID = config["account_sid"]
+AUTH_TOKEN = config["auth_token"]
+FROM = config["your_number"]
+
+
 
 if ARGV
 	if ARGV.count == 2
