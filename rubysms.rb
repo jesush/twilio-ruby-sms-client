@@ -14,26 +14,6 @@ if ARGV
 	end
 end
 
-def debug_response(response)
-	puts "Response: #{response}"
-	puts "Response Data: #{response.inspect}"
-
-	puts "Country Code: #{response.country_code}"
-end
-
-def debug(phone, name, message)
-	if phone
-		puts "Phone: #{phone}"
-		validate_phone(phone)
-	end
-	if name
-		puts "Name: #{name}"
-	end
-	if message
-		puts "Message: #{message}"
-	end
-end
-
 def send_message(numberList, message)
 	client = Twilio::REST::Client.new ACCOUNT_SID, AUTH_TOKEN
 	puts "Sending Message to #{numberList.inspect}"
