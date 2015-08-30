@@ -14,6 +14,11 @@ if ARGV
 	end
 end
 
+if ACCOUNT_SID == "TWILIOSID" || AUTH_TOKEN == "TWILIOTOKEN" || FROM == "+YOUR_NUMBER"
+	puts "Please make sure to configure your TWILIO Credentials before using script."
+	puts "More info here: https://www.twilio.com/help/faq/twilio-basics/where-are-my-test-credentials"
+	abort
+end
 def send_message(numberList, message)
 	client = Twilio::REST::Client.new ACCOUNT_SID, AUTH_TOKEN
 	puts "Sending Message to #{numberList.inspect}"
